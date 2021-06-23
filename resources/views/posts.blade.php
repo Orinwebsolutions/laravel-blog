@@ -51,8 +51,8 @@
                         @foreach ($posts as $post)
                         <div class="p-6">
                             {{-- {!! $post !!} --}}
-                            <h1><a href="posts/{{$post->slug}}">{{$post->title}}</a></h1>
-                            <p><a href="#">{{$post->category->name}}</a></p>
+                            <h1><a href="{{ route('home')}}/posts/{{$post->slug}}">{{$post->title}}</a></h1>
+                            <p><strong><a href="{{ route('home')}}/category/{{$post->category->slug}}"> {{$post->category->name}} </a></strong></p>
                             <div>{!! $post->body !!}</div>
                         </div>
                         @endforeach

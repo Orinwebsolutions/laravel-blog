@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -15,13 +16,6 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function () {
-    return view('posts', [
-        // 'posts' => Post::allfiles()
-        'posts' => Post::all()
-    ]);
-});
-
 // Route::get('/posts/{post}', function (Post $post) {
 //     return view('post', [
 //         // 'post' => Post::find($post)
@@ -33,10 +27,30 @@ Route::get('/', function () {
 // })->whereNumber('id');
 // })->where('id', '[A-z_\-]+');
 
+
+
+// Route::get('category/{id}', function($id){
+//     $cate = Category::find($id);
+//     return view('posts', [ 'posts' => $cate->post ]);
+// });
+
+Route::get('/', function () {
+    // ddd(Post::all());
+    return view('posts', [
+        // 'posts' => Post::allfiles()
+        // 'posts' => Post::all()
+        'posts' => Post::with('category')->get()
+    ]);
+})->name('home');
 Route::get('/posts/{post:slug}', function (Post $post) {
     return view('post', [
         // 'post' => Post::find($post)
         // 'post' => Post::findOrFail($post)
         'post' => $post
     ]);
+});
+Route::get('category/{category:slug}', function(Category $category){
+    // ddd($category->post);
+    // $cate = Category::find($id);
+    return view('posts', [ 'posts' => $category->post ]);
 });

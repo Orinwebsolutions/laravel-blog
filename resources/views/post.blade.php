@@ -49,8 +49,9 @@
                     <div class="grid grid-cols-1 md:grid-cols-1">
                         <div class="p-6">
                             <h1>{{$post->title}}</h1>
-                            <p><a href="#"> {{$post->category->name}} </a></p>
+                            <p><strong><a href="{{ route('home')}}/category/{{$post->category->id}}"> {{$post->category->name}} </a></strong></p>
                             <div>{!! $post->body !!}</div>
+                            <p><a href="/"><strong>Back</strong></a></p>
                         </div>
                     </div>
                 </div>

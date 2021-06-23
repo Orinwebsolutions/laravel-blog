@@ -49,6 +49,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-1">
                         <div class="p-6">
                             <h1>{{$post->title}}</h1>
+                            <p><a href="#"> {{$post->category->name}} </a></p>
                             <div>{!! $post->body !!}</div>
                         </div>
                     </div>

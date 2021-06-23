@@ -16,25 +16,27 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
-    Post::allfiles();
-    // $object = YamlFrontMatter::parseFile(resource_path("posts/my-first-post.html"));
-    // ddd($object);
-    // return view('welcome');
     return view('posts', [
-        'posts' => Post::allfiles()
-        // 'posts' => Post::all()
+        // 'posts' => Post::allfiles()
+        'posts' => Post::all()
     ]);
 });
-// Route::get('/posts', function () {
-//     return view('posts', [
-//         'posts' => Post::allfiles()
-//         // 'posts' => Post::all()
+
+// Route::get('/posts/{post}', function (Post $post) {
+//     return view('post', [
+//         // 'post' => Post::find($post)
+//         // 'post' => Post::findOrFail($post)
+//         'post' => $post
 //     ]);
 // });
+// })->whereAlpha('id');
+// })->whereNumber('id');
+// })->where('id', '[A-z_\-]+');
 
-Route::get('/posts/{slug}', function ($slug) {
+Route::get('/posts/{post:slug}', function (Post $post) {
     return view('post', [
-        'post' => Post::find($slug)
+        // 'post' => Post::find($post)
+        // 'post' => Post::findOrFail($post)
+        'post' => $post
     ]);
-// })->whereAlpha('slug');
-})->where('slug', '[A-z_\-]+');
+});

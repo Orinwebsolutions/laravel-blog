@@ -18,10 +18,10 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->foreignId('category_id');
-            $table->foreignId('users_id');
+            $table->foreignId('user_id');
             $table->text('body');
             $table->timestamps();
-            $table->timestamp('published_it')->nullable();
+            $table->timestamp('published_at')->nullable();
         });
     }
 
